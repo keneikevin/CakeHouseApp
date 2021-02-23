@@ -1,4 +1,4 @@
-package com.kevin.cakehouse.ui
+package com.kevin.cakehouse.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
