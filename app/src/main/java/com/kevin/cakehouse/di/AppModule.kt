@@ -2,8 +2,11 @@ package com.kevin.cakehouse.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.room.Room
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
+import com.kevin.cakehouse.data.local.ShoppingItemDatabase
+import com.kevin.cakehouse.other.Constants.DATABASE_NAME
 import com.kevin.cakehouse.other.Constants.ENCRYPTED_SHARED_PREF_NAME
 import dagger.Module
 import dagger.Provides
@@ -31,4 +34,44 @@ object AppModule {
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
         )
     }
+
+    @Singleton
+    @Provides
+    fun provideShoppingItemDataBase(
+            @ApplicationContext context: Context
+    )= Room.databaseBuilder(context, ShoppingItemDatabase::class.java, DATABASE_NAME)
+
+    @Singleton
+    @Provides
+    fun provideShoppingDao(
+            database:ShoppingItemDatabase
+    ) = database.shoppingDao()
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
