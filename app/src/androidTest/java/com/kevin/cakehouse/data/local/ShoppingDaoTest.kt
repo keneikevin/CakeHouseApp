@@ -28,11 +28,11 @@ class ShoppingDaoTest {
 
     @Before
     fun setUp(){
-            database = Room.inMemoryDatabaseBuilder(
-                ApplicationProvider.getApplicationContext(),
-                ShoppingItemDatabase::class.java
-            ).allowMainThreadQueries().build()
-            dao = database.shoppingDao()
+        database = Room.inMemoryDatabaseBuilder(
+            ApplicationProvider.getApplicationContext(),
+            ShoppingItemDatabase::class.java
+        ).allowMainThreadQueries().build()
+        dao = database.shoppingDao()
     }
 
     @After
@@ -42,7 +42,7 @@ class ShoppingDaoTest {
 
     @Test
     fun insertShoppingItem() = runBlockingTest {
-        val shoppingItem = ShoppingItem("name",24,1000F,"jsnnndsuns",id = 1)
+        val shoppingItem = ShoppingItem("name",24,1000F,id = 1)
         dao.insertShoppingItem(shoppingItem)
         val allShoppingItems = dao.observeAllShoppingItems().getOrAwaitValue()
         assertThat(allShoppingItems).contains(shoppingItem)
@@ -50,7 +50,7 @@ class ShoppingDaoTest {
 
     @Test
     fun deleteShoppingItem() = runBlockingTest {
-        val shoppingItem = ShoppingItem("name",24,1000F,"jsnnndsuns",id = 1)
+        val shoppingItem = ShoppingItem("name",24,1000F,id = 1)
         dao.insertShoppingItem(shoppingItem)
         dao.deleteShoppingItem(shoppingItem)
         val allShoppingItems = dao.observeAllShoppingItems().getOrAwaitValue()
@@ -58,9 +58,9 @@ class ShoppingDaoTest {
     }
     @Test
     fun observeTotalPriceSum() = runBlockingTest {
-        val shoppingItem1 = ShoppingItem("name",1,10F,"jsnnndsuns",id = 1)
-        val shoppingItem2 = ShoppingItem("name",3,20F,"jsnnndsuns",id = 2)
-        val shoppingItem3 = ShoppingItem("name",2,50F,"jsnnndsuns",id = 3)
+        val shoppingItem1 = ShoppingItem("name",1,10F,id = 1)
+        val shoppingItem2 = ShoppingItem("name",3,20F,id = 2)
+        val shoppingItem3 = ShoppingItem("name",2,50F,id = 3)
 
         dao.insertShoppingItem(shoppingItem1)
         dao.insertShoppingItem(shoppingItem2)

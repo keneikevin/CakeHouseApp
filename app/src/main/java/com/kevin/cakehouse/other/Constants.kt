@@ -2,7 +2,7 @@ package com.kevin.cakehouse.other
 
 object Constants {
     const val DATABASE_NAME = "cakes_db"
-
+    const val IMAGE_URL = "https://storcpdkenticomedia.blob.core.windows.net/media/recipemanagementsystem/media/recipe-media-files/recipes/retail/x17/16714-birthday-cake-600x600.jpg?ext=.jpg"
     const val KEY_LOGGED_IN_EMAIL = "KEY_LOGGED_IN_EMAIL"
     const val KEY_PASSWORD = "KEY_PASSWORD"
 
