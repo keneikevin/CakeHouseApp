@@ -13,6 +13,6 @@ class ShoppingFragment:Fragment(R.layout.fragment_shopping) {
     lateinit var viewModel: ShoppingViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity()).get(ShoppingViewModel::class.java)
+
     }
 }
