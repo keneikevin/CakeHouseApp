@@ -1,6 +1,8 @@
 package com.kevin.cakehouse.data.local
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.fragment.app.Fragment
+import androidx.navigation.Navigator
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -8,6 +10,9 @@ import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
 import com.kevin.cakehouse.data.local.entities.ShoppingItem
 import com.kevin.cakehouse.getOrAwaitValue
+import com.kevin.cakehouse.launchFragmentInHiltContainer
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
@@ -15,23 +20,28 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import javax.inject.Inject
+import javax.inject.Named
 
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4::class)
 @SmallTest
+@HiltAndroidTest
 class ShoppingDaoTest {
+
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
+
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var database: ShoppingItemDatabase
+    @Inject
+    @Named("test_db")
+    lateinit var database: ShoppingItemDatabase
     private lateinit var dao:ShoppingDao
 
     @Before
     fun setUp(){
-        database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            ShoppingItemDatabase::class.java
-        ).allowMainThreadQueries().build()
+        hiltRule.inject()
         dao = database.shoppingDao()
     }
 
@@ -47,7 +57,6 @@ class ShoppingDaoTest {
         val allShoppingItems = dao.observeAllShoppingItems().getOrAwaitValue()
         assertThat(allShoppingItems).contains(shoppingItem)
     }
-
     @Test
     fun deleteShoppingItem() = runBlockingTest {
         val shoppingItem = ShoppingItem("name",24,1000F,id = 1)

@@ -5,9 +5,12 @@ import android.content.SharedPreferences
 import androidx.room.Room
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
+import com.kevin.cakehouse.data.local.ShoppingDao
 import com.kevin.cakehouse.data.local.ShoppingItemDatabase
 import com.kevin.cakehouse.other.Constants.DATABASE_NAME
 import com.kevin.cakehouse.other.Constants.ENCRYPTED_SHARED_PREF_NAME
+import com.kevin.cakehouse.repositories.DefaultShoppingRepository
+import com.kevin.cakehouse.repositories.ShoppingRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,7 +42,7 @@ object AppModule {
     @Provides
     fun provideShoppingItemDataBase(
             @ApplicationContext context: Context
-    )= Room.databaseBuilder(context, ShoppingItemDatabase::class.java, DATABASE_NAME)
+    )= Room.databaseBuilder(context, ShoppingItemDatabase::class.java, DATABASE_NAME).build()
 
     @Singleton
     @Provides
@@ -48,6 +51,11 @@ object AppModule {
     ) = database.shoppingDao()
 
 
+    @Singleton
+    @Provides
+    fun provideDefaultShoppingRepository(
+        dao: ShoppingDao
+    ) = DefaultShoppingRepository(dao) as ShoppingRepository
 }
 
 
