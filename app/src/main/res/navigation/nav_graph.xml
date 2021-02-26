@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
-    app:startDestination="@id/detailFragment2">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/detailFragment">
     <fragment
-        android:id="@+id/detailFragment2"
+        android:id="@+id/detailFragment"
         android:name="com.kevin.cakehouse.ui.main.fragments.DetailFragment"
         android:label="DetailFragment" >
         <action
-            android:id="@+id/action_detailFragment2_to_shoppingFragment32"
-            app:destination="@id/shoppingFragment3" />
+            android:id="@+id/action_detailFragment_to_shoppingFragment"
+            app:destination="@id/shoppingFragment"
+            app:popUpTo="@id/detailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/shoppingFragment3"
+        android:id="@+id/shoppingFragment"
         android:name="com.kevin.cakehouse.ui.main.fragments.ShoppingFragment"
         android:label="ShoppingFragment" />
 </navigation>
