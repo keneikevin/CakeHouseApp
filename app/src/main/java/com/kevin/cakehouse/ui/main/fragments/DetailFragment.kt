@@ -49,7 +49,7 @@ class DetailFragment:Fragment(R.layout.fragment_detail) {
                                 Snackbar.LENGTH_LONG
                         ).show()
                         findNavController().navigate(
-                                DetailFragmentDirections.actionDetailFragmentToShoppingFragment()
+                    DetailFragmentDirections.actionDetailFragmentToShoppingFragment()
                         )
                     }
                     Status.LOADING ->{

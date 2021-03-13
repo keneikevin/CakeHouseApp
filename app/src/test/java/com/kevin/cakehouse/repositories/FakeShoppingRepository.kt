@@ -1,15 +1,16 @@
 package com.kevin.cakehouse.repositories
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+
 import com.kevin.cakehouse.data.local.entities.ShoppingItem
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class FakeShoppingRepository : ShoppingRepository {
 
     private val shoppingItems = mutableListOf<ShoppingItem>()
 
-    private val observableShoppingItems = MutableLiveData<List<ShoppingItem>>(shoppingItems)
-    private val observableTotalPrice = MutableLiveData<Float>()
+    private val observableShoppingItems = MutableStateFlow<List<ShoppingItem>>(shoppingItems)
+    private val observableTotalPrice = MutableStateFlow<Float>()
 
     private var shouldReturnNetworkError = false
 
@@ -36,11 +37,11 @@ class FakeShoppingRepository : ShoppingRepository {
         refreshLiveData()
     }
 
-    override fun observeAllShoppingItems(): LiveData<List<ShoppingItem>> {
+    override fun observeAllShoppingItems(): Flow<List<ShoppingItem>> {
         return observableShoppingItems
     }
 
-    override fun observeTotalPrice(): LiveData<Float> {
+    override fun observeTotalPrice(): Flow<Float> {
         return observableTotalPrice
     }
 }

@@ -25,14 +25,14 @@ class ShoppingViewModelTest{
     }
     @Test
     fun `insert shopping item with valid input, returns success`() {
-        viewModel.insertShoppingItem("name", 5, 3.0f)
+        viewModel.insertShoppingItem("name", "5", "3.0f")
 
         val value = viewModel.insertShoppingItemStatus.getOrAwaitValueTest()
         assertThat(value.getContentIfNotHandled()?.status).isEqualTo(Status.SUCCESS)
     }
     @Test
     fun `insert shopping item with no name ,returns error`(){
-        viewModel.insertShoppingItem("", 5, 3.0f)
+        viewModel.insertShoppingItem("", "5", "3.0f")
         val value = viewModel.insertShoppingItemStatus.getOrAwaitValueTest()
         assertThat(value.getContentIfNotHandled()?.status).isEqualTo(Status.ERROR)
     }

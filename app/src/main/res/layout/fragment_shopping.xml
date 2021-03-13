@@ -26,7 +26,7 @@
             android:id="@+id/tvShoppingItemPrice"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
             android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -43,6 +43,7 @@
         app:backgroundTint="@color/colorAccent"
         app:fabSize="normal"
         app:layout_anchorGravity="bottom|right|end"
-        app:layout_anchor="@id/clShoppingItems" />
+        app:layout_anchor="@id/clShoppingItems"
+        android:contentDescription="TODO" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

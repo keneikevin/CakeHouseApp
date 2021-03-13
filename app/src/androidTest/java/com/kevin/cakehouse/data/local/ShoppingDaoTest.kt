@@ -44,7 +44,7 @@ class ShoppingDaoTest {
     fun insertShoppingItem() = runBlockingTest {
         val shoppingItem = ShoppingItem("name",24,1000F,id = 1)
         dao.insertShoppingItem(shoppingItem)
-        val allShoppingItems = dao.observeAllShoppingItems().getOrAwaitValue()
+        val allShoppingItems = dao.observeAllShoppingItems()
         assertThat(allShoppingItems).contains(shoppingItem)
     }
 
