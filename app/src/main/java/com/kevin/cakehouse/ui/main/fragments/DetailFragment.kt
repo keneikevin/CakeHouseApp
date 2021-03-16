@@ -38,14 +38,15 @@ class DetailFragment:Fragment(R.layout.fragment_detail) {
                 when(result.status){
                     Status.ERROR ->{
                         Snackbar.make(
-                                requireActivity().findViewById(R.id.rootLayout),
-                                result.message ?:"An error occurred",
-                                Snackbar.LENGTH_LONG)
+                            binding.root,
+                            result.message ?: "An unknown error occurred",
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
                     Status.SUCCESS ->{
                         Snackbar.make(
-                                requireActivity().findViewById(R.id.rootLayout),
-                                result.message?:"Added Shopping Item",
+                            binding.root,
+                            result.message?:"Added Shopping Item",
                                 Snackbar.LENGTH_LONG
                         ).show()
                         findNavController().navigate(
