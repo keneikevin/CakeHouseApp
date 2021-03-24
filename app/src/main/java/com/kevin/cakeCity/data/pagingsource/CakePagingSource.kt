@@ -12,41 +12,30 @@ import kotlinx.coroutines.tasks.await
 class CakePagingSource(
     private val db: FirebaseFirestore,
   //  private val uid: String
-) :PagingSource<QuerySnapshot, Cake>() {
+) : PagingSource<QuerySnapshot, Cake>() {
     override suspend fun load(params: LoadParams<QuerySnapshot>): LoadResult<QuerySnapshot, Cake> {
         return try {
             val currentPage = params.key ?: db.collection(CAKE_COLLECTION)
-                .orderBy("date", Query.Direction.DESCENDING)
+                .limit(10)
                 .get()
                 .await()
 
-            val lastDocumentSnapShot = currentPage.documents[currentPage.size() -1]
+            val lastDocumentSnapShot = currentPage.documents[currentPage.size() - 1]
             val nextPage = db.collection(CAKE_COLLECTION).limit(10).startAfter(lastDocumentSnapShot)
-                    .orderBy("date", Query.Direction.DESCENDING)
-                    .startAfter(lastDocumentSnapShot)
                 .get()
                 .await()
 
             LoadResult.Page(
-              currentPage.toObjects(Cake::class.java).onEach { cake ->
-                  val cakes = db.collection(CAKE_COLLECTION).document().get().await().toObject(Cake::class.java)!!
-                  cake.title = cakes.title
-              },
-                        null,
-                    nextPage
+                data = currentPage.toObjects(Cake::class.java),
+                prevKey = null,
+                nextKey = nextPage
             )
-
-        } catch (e:Exception){
+        } catch (e: Exception) {
             LoadResult.Error(e)
         }
     }
 
-    override fun getRefreshKey(state: PagingState<QuerySnapshot, Cake>): QuerySnapshot? {
-        TODO("Not yet implemented")
-    }
-
 }
-
 
 
 

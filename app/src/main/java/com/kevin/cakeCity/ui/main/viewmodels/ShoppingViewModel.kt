@@ -26,15 +26,11 @@ class ShoppingViewModel @Inject constructor(
     val insertShoppingItemStatus: LiveData<Event<Resource<ShoppingItem>>> = _insertShoppingItemStatus
 
 
+    val flow = Pager(PagingConfig(20)) {
+        CakePagingSource(FirebaseFirestore.getInstance())
+    }.flow.cachedIn(viewModelScope)
 
-    fun getPagingFlow():Flow<PagingData<Cake>>{
-        val pagingSource = CakePagingSource(
-                FirebaseFirestore.getInstance()
-        )
-        return Pager(PagingConfig(PAGE_SIZE)){
-            pagingSource
-        }.flow.cachedIn(viewModelScope)
-    }
+
     val price = repository.observePrice()
     val totalPrice = repository.observeTotalPrice()
     fun deleteShoppingItem(shoppingItem: ShoppingItem) = viewModelScope.launch {
