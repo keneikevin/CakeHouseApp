@@ -7,9 +7,9 @@
     android:padding="16dp">
 
     <ImageView
-        android:id="@+id/ivShoppingImage"
+        android:id="@+id/ivCake"
         android:layout_width="100dp"
-        android:src="@drawable/ic_image"
+        android:src="@drawable/blackforest"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,17 +32,17 @@
         android:text="3x"
         android:layout_marginLeft="16dp"
         android:textSize="28sp"
-        app:layout_constraintStart_toEndOf="@+id/ivShoppingImage"
+        app:layout_constraintStart_toEndOf="@+id/ivCake"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvShoppingItemPrice"
+        android:id="@+id/tvPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Price: 3€"
         android:layout_marginLeft="16dp"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/ivShoppingImage"
+        app:layout_constraintStart_toEndOf="@+id/ivCake"
         app:layout_constraintTop_toBottomOf="@+id/tvShoppingItemSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

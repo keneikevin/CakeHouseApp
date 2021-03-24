@@ -2,21 +2,21 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
     app:startDestination="@id/shoppingFragment">
-
     <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.kevin.cakehouse.ui.main.fragments.DetailFragment"
-        android:label="DetailFragment" >
-        <action
-            android:id="@+id/action_detailFragment_to_shoppingFragment"
-            app:destination="@id/shoppingFragment" />
-    </fragment>
+        android:id="@+id/homeFragment"
+        android:name="com.kevin.cakeCity.ui.main.fragments.HomeFragment"
+        android:label="HomeFragment" />
     <fragment
         android:id="@+id/shoppingFragment"
-        android:name="com.kevin.cakehouse.ui.main.fragments.ShoppingFragment"
+        android:name="com.kevin.cakeCity.ui.main.fragments.ShoppingFragment"
         android:label="ShoppingFragment" >
         <action
             android:id="@+id/action_shoppingFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:popUpTo="@id/shoppingFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.kevin.cakeCity.ui.main.fragments.DetailFragment"
+        android:label="DetailFragment" />
 </navigation>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "363184377723",
+    "firebase_url": "https://cakeus-70aea.firebaseio.com",
+    "project_id": "cakeus-70aea",
+    "storage_bucket": "cakeus-70aea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363184377723:android:cb1557c9e7c9d0c10977de",
+        "android_client_info": {
+          "package_name": "com.kevin.cakehouse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363184377723-f6bnvdrcfrjp09iar3t5bu93ljhpm2r5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACFvgZGRfQWoCP5Hsp3I7IufqyzeLrLq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363184377723-f6bnvdrcfrjp09iar3t5bu93ljhpm2r5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
