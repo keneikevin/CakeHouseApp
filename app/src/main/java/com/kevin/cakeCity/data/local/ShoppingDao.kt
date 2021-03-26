@@ -2,6 +2,8 @@ package com.kevin.cakeCity.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.google.firebase.firestore.DocumentId
+import com.kevin.cakeCity.data.local.entities.Cake
 import com.kevin.cakeCity.data.local.entities.ShoppingItem
 
 
@@ -16,9 +18,10 @@ interface ShoppingDao {
     @Query("SELECT * FROM shopping_items")
     fun observeAllShoppingItems(): LiveData<List<ShoppingItem>>
 
-    @Query("SELECT SUM(price *size)FROM shopping_items")
+    @Query("SELECT SUM(price)FROM shopping_items")
     fun observeTotalPrice(): LiveData<Float>
 
     @Query("SELECT (price*size) FROM shopping_items")
     fun observePrice(): LiveData<Float>
+
 }

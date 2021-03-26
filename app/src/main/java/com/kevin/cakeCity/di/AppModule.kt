@@ -5,9 +5,12 @@ import android.content.SharedPreferences
 import androidx.room.Room
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
+import com.kevin.cakeCity.R
 import com.kevin.cakeCity.data.local.ShoppingDao
 import com.kevin.cakeCity.data.local.ShoppingItemDatabase
-import com.kevin.cakeCity.data.remote.CakeDatabase
 import com.kevin.cakeCity.other.Constants.DATABASE_NAME
 import com.kevin.cakeCity.other.Constants.ENCRYPTED_SHARED_PREF_NAME
 import com.kevin.cakeCity.repositories.DefaultShoppingRepository
@@ -23,9 +26,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    @Singleton
-    @Provides
-    fun provideCakeDataBase() = CakeDatabase()
     @Singleton
     @Provides
     fun provideEncryptedSharedPreferences(
@@ -62,7 +62,16 @@ object AppModule {
             dao: ShoppingDao
     ) = DefaultShoppingRepository(dao) as ShoppingRepository
 
-
+    @Singleton
+    @Provides
+    fun provideGlideInstance(
+        @ApplicationContext context: Context
+    ) = Glide.with(context).setDefaultRequestOptions(
+        RequestOptions()
+            .placeholder(R.drawable.ic_image)
+            .error(R.drawable.ic_image)
+            .diskCacheStrategy(DiskCacheStrategy.DATA)
+    )
 }
 
 

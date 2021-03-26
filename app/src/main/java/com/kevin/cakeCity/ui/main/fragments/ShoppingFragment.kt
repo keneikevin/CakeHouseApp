@@ -1,6 +1,7 @@
 package com.kevin.cakeCity.ui.main.fragments
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -31,9 +32,7 @@ class ShoppingFragment :Fragment(R.layout.fragment_shopping) {
         setupRecyclerView()
 
         binding.fabCart.setOnClickListener {
-         findNavController().navigate(
-             ShoppingFragmentDirections.actionShoppingFragmentToDetailFragment()
-         )
+           Toast.makeText(requireActivity(),"buy",Toast.LENGTH_LONG).show()
         }}
 
 
@@ -61,7 +60,7 @@ class ShoppingFragment :Fragment(R.layout.fragment_shopping) {
     private fun subscribeToObservers() {
         viewModel.totalPrice.observe(viewLifecycleOwner, Observer {
             val price = it ?: 0f
-            val priceText = "Total Price: $price ksh"
+            val priceText = "Total: $price ksh"
             binding.tvCakePrice.text = priceText
         })
         viewModel.shoppingItems.observe(viewLifecycleOwner, Observer {

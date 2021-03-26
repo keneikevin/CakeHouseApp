@@ -6,15 +6,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.RequestManager
 import com.google.android.material.snackbar.Snackbar
 import com.kevin.cakeCity.R
 import com.kevin.cakeCity.databinding.FragmentDetailBinding
 import com.kevin.cakeCity.other.Status
 import com.kevin.cakeCity.ui.main.viewmodels.ShoppingViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DetailFragment:Fragment(R.layout.fragment_detail) {
+    @Inject
+    lateinit var glide: RequestManager
     private lateinit var binding: FragmentDetailBinding
     lateinit var viewModel: ShoppingViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -23,12 +27,13 @@ class DetailFragment:Fragment(R.layout.fragment_detail) {
         binding = FragmentDetailBinding.bind(view)
         subscribeToObservers()
 
+
        binding.picker.minValue = 1
        binding.picker.maxValue = 10
         binding.picker.setOnValueChangedListener{ picker, oldVal, newVal ->
             val valuePicker1: Int = binding.picker.value
             val text = "Changed from $oldVal to $newVal"
-
+            viewModel.calculate(binding.picker.value.toString())
 
         }
         val vals = arrayOf<String>("egg", "eggless")
@@ -42,7 +47,12 @@ class DetailFragment:Fragment(R.layout.fragment_detail) {
 
         }
     }
+
     private fun subscribeToObservers(){
+    viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
+        binding.imageView7.text = newScore.toString()
+
+    })
         viewModel.insertShoppingItemStatus.observe(viewLifecycleOwner, Observer {
             it.getContentIfNotHandled()?.let { result ->
                 when (result.status) {
@@ -68,4 +78,31 @@ class DetailFragment:Fragment(R.layout.fragment_detail) {
             }
         })
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

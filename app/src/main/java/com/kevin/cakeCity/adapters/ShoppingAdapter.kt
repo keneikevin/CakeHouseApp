@@ -5,15 +5,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.RequestManager
 import com.kevin.cakeCity.data.local.entities.ShoppingItem
 import com.kevin.cakeCity.databinding.ItemShoppingBinding
+import javax.inject.Inject
 
-class ShoppingAdapter():RecyclerView.Adapter<ShoppingAdapter.ShoppingViewHolder>() {
+class ShoppingAdapter @Inject constructor(
+):RecyclerView.Adapter<ShoppingAdapter.ShoppingViewHolder>() {
     private lateinit var binding: ItemShoppingBinding
      class ShoppingViewHolder(binding: ItemShoppingBinding) : RecyclerView.ViewHolder(binding.root){
         val tvName= binding.tvName
          val tvSize =binding.tvShoppingItemSize
          val tvPrice = binding.tvPrice
+
      }
 
     private val diffCallback = object : DiffUtil.ItemCallback<ShoppingItem>() {
@@ -46,7 +50,7 @@ class ShoppingAdapter():RecyclerView.Adapter<ShoppingAdapter.ShoppingViewHolder>
         val shoppingItem = shoppingItems[position]
        holder.apply {
         tvName.text = shoppingItem.name
-           val sizeText = "${shoppingItem.size}"
+           val sizeText = "${shoppingItem.size}KG"
         tvSize.text = sizeText
            val priceText = "${shoppingItem.price}0Ksh"
         tvPrice.text = priceText

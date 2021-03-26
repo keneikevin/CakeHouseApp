@@ -1,9 +1,13 @@
 package com.kevin.cakeCity.data.local.entities
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class Cake(
-        var title: String = "",
-        var price: String = "",
-        val img: String = "",
-         val mediaId:String = ""
-)
+@Entity(tableName = "cakes")
+data class Cake (
+    @PrimaryKey
+    val mediaId: String ="",
+    val img: String? ="",
+    val price: String? ="",
+    val title: String? =""
+        )

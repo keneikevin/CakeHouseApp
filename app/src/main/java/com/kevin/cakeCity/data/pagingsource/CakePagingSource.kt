@@ -1,9 +1,7 @@
-package com.kevin.cakeCity
+package com.kevin.cakeCity.data.pagingsource
 
 import androidx.paging.PagingSource
-import androidx.paging.PagingState
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.kevin.cakeCity.data.local.entities.Cake
 import com.kevin.cakeCity.other.Constants.CAKE_COLLECTION
@@ -11,7 +9,7 @@ import kotlinx.coroutines.tasks.await
 
 class CakePagingSource(
     private val db: FirebaseFirestore,
-  //  private val uid: String
+    //  private val uid: String
 ) : PagingSource<QuerySnapshot, Cake>() {
     override suspend fun load(params: LoadParams<QuerySnapshot>): LoadResult<QuerySnapshot, Cake> {
         return try {
@@ -36,18 +34,3 @@ class CakePagingSource(
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
